@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Multi Calculator UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: space-between;
+      padding: 20px;
+      margin: 0;
+      background: url('fiber.png') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
+    }
+    .container {
+      display: flex;
+      flex-direction: column;
+      width: 48%;
+    }
+    .calculator, .frame {
+      border: 2px solid #007bff;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 10px;
+      background: rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    }
+    .frame {
+      display: flex;
+      flex-direction: column;
+    }
+    input, select {
+      margin: 10px 0;
+      padding: 8px;
+      width: calc(100% - 20px);
+      font-size: 16px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      background-color: white;
+      color: black;
+      font-weight: bold;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    h3 {
+      margin-top: 20px;
+      font-size: 18px;
+    }
+  </style>
+</head>
+<body>
+  <!-- Left Side -->
+  <div class="container">
+    <div class="frame">
+      <h2>Info DWDM</h2>
+      <!-- Loss Calculator - Site A -->
+      <div class="calculator">
+        <h3>Loss Calculator - Site A</h3>
+        <label for="txB">TX B:</label>
+        <input type="number" id="txB" placeholder="Enter TX B">
+        <label for="rxA">RX A:</label>
+        <input type="number" id="rxA" placeholder="Enter RX A">
+        <label for="viA">VI A:</label>
+        <input type="number" id="viA" placeholder="Enter VI A">
+        <button id="calculateA">Calculate</button>
+        <h3 id="resultA">Fiber Loss: </h3>
+      </div>
+
+      <!-- Loss Calculator - Site B -->
+      <div class="calculator">
+        <h3>Loss Calculator - Site B</h3>
+        <label for="txA">TX A:</label>
+        <input type="number" id="txA" placeholder="Enter TX A">
+        <label for="rxB">RX B:</label>
+        <input type="number" id="rxB" placeholder="Enter RX B">
+        <label for="viB">VI B:</label>
+        <input type="number" id="viB" placeholder="Enter VI B">
+        <button id="calculateB">Calculate</button>
+        <h3 id="resultB">Fiber Loss: </h3>
+      </div>
+    </div>
+
+    <!-- Loss Difference Calculator -->
+    <div class="calculator">
+      <h2>Loss Difference</h2>
+      <label for="thresholdValue">Threshold:</label>
+      <input type="number" id="thresholdValue" placeholder="Enter Threshold">
+      <label for="currentLossValue">Current Loss:</label>
+      <input type="number" id="currentLossValue" placeholder="Enter Current Loss">
+      <button id="calculateDifference">Calculate</button>
+      <h3 id="resultDifference">Loss Difference: </h3>
+    </div>
+  </div>
+
+  <!-- Right Side -->
+  <div class="container">
+    <!-- Threshold Meter -->
+    <div class="calculator">
+      <h2>Threshold Meter</h2>
+      <label for="constantA">Constant A:</label>
+      <input type="number" id="constantA" value="0.25" readonly>
+      <label for="constantB">Constant B:</label>
+      <input type="number" id="constantB" value="0.05" readonly>
+      <label for="linkDistanceThreshold">Link Distance:</label>
+      <input type="number" id="linkDistanceThreshold" placeholder="Enter Link Distance">
+      <label for="connectorLossThreshold">Connector Loss:</label>
+      <input type="number" id="connectorLossThreshold" value="2" readonly>
+      <button id="calculateThreshold">Calculate</button>
+      <h3 id="resultThreshold">Threshold: </h3>
+    </div>
+
+    <!-- Threshold As Per Link Budget -->
+    <div class="calculator">
+      <h2>Threshold As Per Link Budget</h2>
+      <label for="fiberLength">Fiber Length:</label>
+      <input type="number" id="fiberLength" placeholder="Enter Fiber Length">
+      <label for="fiberAttenuation">Fiber Attenuation (Per KM):</label>
+      <input type="number" id="fiberAttenuation" value="0.3" readonly>
+      <label for="spliceLoss">Splice Loss:</label>
+      <input type="number" id="spliceLoss" value="0.05" readonly>
+      <label for="spliceCount">Count Of Splices:</label>
+      <input type="number" id="spliceCount" placeholder="Enter Splice Count">
+      <label for="connectorLoss">Connector Loss:</label>
+      <input type="number" id="connectorLoss" value="0.5" readonly>
+      <label for="connectorCount">Connector Count:</label>
+      <input type="number" id="connectorCount" value="2" readonly>
+      <label for="safetyMargin">Safety Margin:</label>
+      <select id="safetyMargin">
+        <option value="2.5">10 Km or below</option>
+        <option value="3">Above 10km</option>
+      </select>
+      <button id="calculateLinkBudget">Calculate</button>
+      <h3 id="resultLinkBudget">Threshold: </h3>
+    </div>
+  </div>
+
+  <script src="popup.js"></script>
+</body>
+</html>
